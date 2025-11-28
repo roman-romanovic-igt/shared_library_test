@@ -18,5 +18,5 @@ def unpackCxCLI(String localPath = "ast-cli_linux_x64.tar.gz") {
 }
 
 def runScan() {
-    sh "./cx scan create --application-name IGT-test --project-name shared_library_test --branch master --scan-types sast,sca,api-security,container-security"
+    sh "./cx scan create -s . --application-name IGT-test --project-name shared_library_test --branch master --scan-types sast,sca,api-security,container-security"
 }
