@@ -7,14 +7,7 @@ def call(String name="human") {
 }
 
 def downloadCxCLI(String urlString, String localPath = "/tmp/ast-cli_linux_x64.tar.gz") {
-    def url = new URL(urlString)
-    def file = new File(localPath)
+    def response = sh(script: "curl -s -L -o ${localPath} '${urlString}'", returnStdout: true).trim()
 
-    file.withOutputStream { out ->
-        url.withInputStream { input ->
-            out << input
-        }
-    }
-
-    println "Downloaded ${file.size()} bytes to ${localPath}"
+    echo "Downloaded to ${localPath}"
 }
