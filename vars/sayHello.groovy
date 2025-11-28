@@ -6,3 +6,16 @@ def call(String name="human") {
     sh "wget -q http://github.com/Checkmarx/ast-cli/releases/latest/download/ast-cli_linux_x64.tar.gz"
     echo "Downloaded"
 }
+
+def downloadCxCLI(String urlString, String localPath = "./ast-cli_linux_x64.tar.gz") {
+    def url = new URL(urlString)
+    def file = new File(localPath)
+
+    file.withOutputStream { out ->
+        url.withInputStream { input ->
+            out << input
+        }
+    }
+
+    println "Downloaded ${file.size()} bytes to ${localPath}"
+}
