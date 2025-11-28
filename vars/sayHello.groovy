@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(String name="human") {
+def call(String base_url, String tenant, String, client_id, String client_secret) {
     downloadCxCLI('http://github.com/Checkmarx/ast-cli/releases/latest/download/ast-cli_linux_x64.tar.gz')
     unpackCxCLI()
 }
@@ -13,9 +13,9 @@ def downloadCxCLI(String urlString, String localPath = "ast-cli_linux_x64.tar.gz
 
 def unpackCxCLI(String localPath = "ast-cli_linux_x64.tar.gz") {
     sh "tar -xzvf ${localPath}"
-    sh "cx version"
+    sh "./cx version"
 }
 
-def runScan() {
-
+def runScan(String cx_base_url, String cx_tenant, String, cx_client_id, String cx_client_secret) {
+    sh "./cx "
 }
