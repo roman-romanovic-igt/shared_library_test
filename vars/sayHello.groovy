@@ -15,4 +15,5 @@ def downloadCxCLI(String urlString, String localPath = "/tmp/ast-cli_linux_x64.t
 
 def unpackCxCLI(String localPath = "/tmp/ast-cli_linux_x64.tar.gz") {
     sh "tar -xzvf ${localPath} -C /tmp"
+    sh "/tmp/cx version"
 }
