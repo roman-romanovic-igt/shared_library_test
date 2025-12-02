@@ -1,9 +1,9 @@
 #!/usr/bin/env groovy
 
-def call() {
+def call(String app_name, String project_name, String branch) {
     downloadCxCLI('http://github.com/Checkmarx/ast-cli/releases/latest/download/ast-cli_linux_x64.tar.gz')
     unpackCxCLI()
-    runScan()
+    runScan(app_name, project_name, branch)
 }
 
 def downloadCxCLI(String urlString, String localPath = "ast-cli_linux_x64.tar.gz") {
@@ -17,6 +17,6 @@ def unpackCxCLI(String localPath = "ast-cli_linux_x64.tar.gz") {
     sh "./cx version"
 }
 
-def runScan() {
-    sh "./cx scan create -s . --application-name IGT-test --project-name shared_library_test --branch master --scan-types sast,sca,api-security,container-security"
+def runScan(String app_name, String project_name, String branch) {
+    sh "./cx scan create -s . --application-name ${app_name} --project-name ${project_name} --branch ${branch} --scan-types sast,sca,api-security,container-security"
 }
